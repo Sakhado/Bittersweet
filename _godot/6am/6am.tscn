@@ -87,7 +87,7 @@ transform = Transform3D(1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, 0.357
 shape = SubResource("BoxShape3D_3jb60")
 
 [node name="Camera3D" type="Camera3D" parent="monitor"]
-transform = Transform3D(1.1481, 0, -2.84217e-14, 0, 1, 0, 0, 0, 1, -2.98023e-08, 0.392744, 0.60796)
+transform = Transform3D(1.1481, 0, -2.84217e-14, 0, 1, 0, 0, 0, 1, 2.98023e-08, 0.392744, 0.473784)
 
 [node name="Sprite3D" type="Sprite3D" parent="monitor"]
 transform = Transform3D(0.149136, 0, -1.06581e-14, 0, 0.0865103, 0, 8.88178e-16, 0, 0.0865103, -4.47035e-07, 0.454756, 0.0527027)
@@ -107,9 +107,6 @@ transform = Transform3D(0.685841, 0, 0, 0, 0.685841, 0, 0, 0, 0.685841, 158.569,
 [node name="SubViewport" type="SubViewport" parent="."]
 mesh_lod_threshold = 0.0
 scaling_3d_mode = 1
-scaling_3d_scale = 0.45
-texture_mipmap_bias = -2.0
-fsr_sharpness = 0.0
 size = Vector2i(512, 527)
 
 [node name="csplayer" parent="SubViewport" instance=ExtResource("13_xju51")]

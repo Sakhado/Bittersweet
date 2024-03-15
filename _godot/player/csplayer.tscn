@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbxeahkha0e0i"]
+[gd_scene load_steps=6 format=3 uid="uid://dbxeahkha0e0i"]
 
 [ext_resource type="Script" path="res://playercs_root.gd" id="1_ilkef"]
 [ext_resource type="Script" path="res://player/playercs.gd" id="2_s2agq"]
 [ext_resource type="Script" path="res://player/player_cast.gd" id="3_5rn4g"]
+[ext_resource type="PackedScene" uid="uid://ev0e5h3pco00" path="res://6am/assets/dust2/ak.glb" id="4_0p6e2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_87bk5"]
 
@@ -21,6 +22,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80424, 0)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
 script = ExtResource("3_5rn4g")
+
+[node name="ak" parent="player_character/player_head/player_camera" instance=ExtResource("4_0p6e2")]
+transform = Transform3D(0.305517, 0, -1.34517, 0, 1.37943, 0, 1.34517, 0, 0.305517, 0.556855, -0.781747, -0.944755)
 
 [node name="player_collision" type="CollisionShape3D" parent="player_character"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

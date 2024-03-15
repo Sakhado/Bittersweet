@@ -21,6 +21,8 @@ func _unhandled_input(event):
 func _input(event):
 	if Input.is_action_pressed("close"):
 		get_tree().quit()
+	if Input.is_action_pressed("fullscreen"):
+		DisplayServer.window_set_mode(3)
 		
 		
 func _process(delta):

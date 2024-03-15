@@ -32,7 +32,7 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
-			velocity.y += 2
+			velocity.y += 3.5
 	
 	# Vector2 storing positive or negative x and y values indicating the direction of movement
 	var input_dir = Input.get_vector("left","right","forward","back") # -x +x -y +y
