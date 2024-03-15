@@ -1,17 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://v0gwhauy0ib6"]
+[gd_scene load_steps=5 format=3 uid="uid://dbxeahkha0e0i"]
 
-[ext_resource type="Script" path="res://player/player_character.gd" id="1_fdo8x"]
-[ext_resource type="Script" path="res://player/player.gd" id="1_s05sv"]
-[ext_resource type="Script" path="res://player/player_held.gd" id="2_5pplc"]
-[ext_resource type="Script" path="res://player/player_cast.gd" id="2_twtpv"]
+[ext_resource type="Script" path="res://playercs_root.gd" id="1_ilkef"]
+[ext_resource type="Script" path="res://player/playercs.gd" id="2_s2agq"]
+[ext_resource type="Script" path="res://player/player_cast.gd" id="3_5rn4g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_87bk5"]
 
 [node name="player_main" type="Node3D"]
-script = ExtResource("1_s05sv")
+script = ExtResource("1_ilkef")
 
 [node name="player_character" type="CharacterBody3D" parent="."]
-script = ExtResource("1_fdo8x")
+script = ExtResource("2_s2agq")
 
 [node name="player_head" type="Node3D" parent="player_character"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80424, 0)
@@ -21,11 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80424, 0)
 [node name="player_cast" type="RayCast3D" parent="player_character/player_head/player_camera"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
-script = ExtResource("2_twtpv")
-
-[node name="player_held" type="Node3D" parent="player_character/player_head/player_camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, 0.266986, -0.242201, -0.974087)
-script = ExtResource("2_5pplc")
+script = ExtResource("3_5rn4g")
 
 [node name="player_collision" type="CollisionShape3D" parent="player_character"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

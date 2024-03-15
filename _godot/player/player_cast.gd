@@ -7,7 +7,10 @@ var original_pos = target_position
 @onready var player = $"../../../.."
 @onready var camera = $".."
 
-var target
+@onready var target = null
+
+func _ready():	
+	collide_with_areas = true
 
 func _process(delta):
 	if is_colliding():

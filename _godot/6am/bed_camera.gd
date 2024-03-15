@@ -17,7 +17,6 @@ func _unhandled_input(event):
 			rot.x = -45
 
 func _process(delta):
-	print(rot.x)
 	if current:
 		rotation_degrees.y = rot.x
 	else:

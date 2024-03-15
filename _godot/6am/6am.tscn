@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d125c8ds52b5c"]
+[gd_scene load_steps=20 format=3 uid="uid://d125c8ds52b5c"]
 
 [ext_resource type="Script" path="res://6am/6am.gd" id="1_m1rcd"]
 [ext_resource type="PackedScene" uid="uid://v0gwhauy0ib6" path="res://player/player.tscn" id="2_up34l"]
@@ -9,38 +9,48 @@
 [ext_resource type="Script" path="res://6am/bed_camera.gd" id="6_cw718"]
 [ext_resource type="Script" path="res://6am/assets/bedroom/monitor.gd" id="10_xviqk"]
 [ext_resource type="PackedScene" uid="uid://b8djcm2p4whjj" path="res://6am/assets/bedroom/door.glb" id="11_ohkal"]
-[ext_resource type="PackedScene" uid="uid://d12k8e8yoa6m" path="res://6am/assets/dust2/dust2.glb" id="12_xvk6u"]
+[ext_resource type="PackedScene" uid="uid://dhv7vuj2fvyka" path="res://6am/assets/dust2/dust2.glb" id="12_xvk6u"]
+[ext_resource type="PackedScene" uid="uid://dbxeahkha0e0i" path="res://player/csplayer.tscn" id="13_xju51"]
 [ext_resource type="PackedScene" uid="uid://c28i2cb0ex88k" path="res://6am/assets/bedroom/desk.glb" id="456_0bgdy"]
 [ext_resource type="PackedScene" uid="uid://nw7ycv5ih5o6" path="res://6am/assets/bedroom/monitor.glb" id="457_civ8t"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5t4e"]
+sky_top_color = Color(0.521569, 0.690196, 0.933333, 1)
+sky_horizon_color = Color(0.631373, 0.639216, 0.654902, 1)
+sun_angle_max = 360.0
+
+[sub_resource type="Sky" id="Sky_2oqsc"]
+sky_material = SubResource("ProceduralSkyMaterial_f5t4e")
+
+[sub_resource type="Environment" id="Environment_6ukxw"]
+background_mode = 2
+sky = SubResource("Sky_2oqsc")
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e5vxo"]
 size = Vector3(2.94748, 1.32252, 3.55366)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_84v0w"]
-sky_top_color = Color(0.0196078, 0.0901961, 0.203922, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
-sky_curve = 0.0256132
-ground_bottom_color = Color(0, 0, 0, 1)
-sun_angle_max = 0.0
-sun_curve = 0.235376
+[sub_resource type="BoxShape3D" id="BoxShape3D_3jb60"]
+size = Vector3(0.846431, 1.21289, 0.360516)
 
-[sub_resource type="Sky" id="Sky_x0nm0"]
-sky_material = SubResource("ProceduralSkyMaterial_84v0w")
-
-[sub_resource type="Environment" id="Environment_420sx"]
-background_mode = 2
-sky = SubResource("Sky_x0nm0")
-fog_enabled = true
-fog_light_color = Color(0.0745098, 0.141176, 0.180392, 1)
+[sub_resource type="ViewportTexture" id="ViewportTexture_rjcx5"]
+viewport_path = NodePath("SubViewport")
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_m1rcd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6ukxw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.983707, -0.142442, 0.109681, -0.162392, -0.44231, 0.882038, -0.077126, -0.885478, -0.458235, 119.663, 13.3713, -0.86154)
 
 [node name="ceiling" parent="." instance=ExtResource("4_yy6al")]
 transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, -0.909703, -0.405435, -0.908697)
 
 [node name="player_main" parent="." instance=ExtResource("2_up34l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34111, 1.25988, 32.3058)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7622, 0.258605, -2.11671)
 
 [node name="room" parent="." instance=ExtResource("5_2l8ag")]
 transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, -0.909703, -0.405435, -0.908697)
@@ -67,11 +77,21 @@ one_shot = true
 transform = Transform3D(-1.7266e-08, 0, 0.395, 0, 0.395, 0, -0.395, 0, -1.7266e-08, 0.219551, -0.142747, 1.45181)
 
 [node name="monitor" parent="." instance=ExtResource("457_civ8t")]
-transform = Transform3D(-0.871003, 0, -8.74228e-08, 0, 1, 0, 7.61455e-08, 0, -1, 0.222781, 0.863106, 1.65262)
+transform = Transform3D(-0.871003, 0, -8.74228e-08, 0, 1, 0, 7.61455e-08, 0, -1, 0.222781, 0.863106, 1.52538)
 script = ExtResource("10_xviqk")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_420sx")
+[node name="monitor_area" type="Area3D" parent="monitor"]
+
+[node name="monitor_col" type="CollisionShape3D" parent="monitor/monitor_area"]
+transform = Transform3D(1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, 0.357892, 0)
+shape = SubResource("BoxShape3D_3jb60")
+
+[node name="Camera3D" type="Camera3D" parent="monitor"]
+transform = Transform3D(1.1481, 0, -2.84217e-14, 0, 1, 0, 0, 0, 1, -2.98023e-08, 0.392744, 0.60796)
+
+[node name="Sprite3D" type="Sprite3D" parent="monitor"]
+transform = Transform3D(0.149136, 0, -1.06581e-14, 0, 0.0865103, 0, 8.88178e-16, 0, 0.0865103, -4.47035e-07, 0.454756, 0.0527027)
+texture = SubResource("ViewportTexture_rjcx5")
 
 [node name="door" parent="." instance=ExtResource("11_ohkal")]
 transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, -0.909703, -0.405435, -0.908697)
@@ -82,7 +102,18 @@ light_color = Color(0.180392, 0.760784, 0.913725, 1)
 light_energy = 0.05
 
 [node name="dust2" parent="." instance=ExtResource("12_xvk6u")]
-transform = Transform3D(0.754, 0, 0, 0, 0.754, 0, 0, 0, 0.754, -6.46507, 0, 23.9973)
+transform = Transform3D(0.685841, 0, 0, 0, 0.685841, 0, 0, 0, 0.685841, 158.569, -0.853349, -18.4021)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+mesh_lod_threshold = 0.0
+scaling_3d_mode = 1
+scaling_3d_scale = 0.45
+texture_mipmap_bias = -2.0
+fsr_sharpness = 0.0
+size = Vector2i(512, 527)
+
+[node name="csplayer" parent="SubViewport" instance=ExtResource("13_xju51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.6, -0.713932, -0.427579)
 
 [connection signal="body_entered" from="entity_bed/Area3D" to="entity_bed" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="entity_bed/Area3D" to="entity_bed" method="_on_area_3d_body_exited"]
