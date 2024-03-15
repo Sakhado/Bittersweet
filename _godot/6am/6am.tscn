@@ -1,0 +1,88 @@
+[gd_scene load_steps=17 format=3 uid="uid://d125c8ds52b5c"]
+
+[ext_resource type="Script" path="res://6am/6am.gd" id="1_m1rcd"]
+[ext_resource type="PackedScene" uid="uid://v0gwhauy0ib6" path="res://player/player.tscn" id="2_up34l"]
+[ext_resource type="PackedScene" uid="uid://bx0uso2qad6x0" path="res://6am/assets/bedroom/ceiling.glb" id="4_yy6al"]
+[ext_resource type="PackedScene" uid="uid://4yocgvk1d1n4" path="res://6am/assets/bedroom/room.glb" id="5_2l8ag"]
+[ext_resource type="PackedScene" uid="uid://clsqkgwdsd36y" path="res://6am/assets/interactables/entity_bed.tscn" id="5_83ym8"]
+[ext_resource type="Script" path="res://6am/Area3D.gd" id="6_2neyb"]
+[ext_resource type="Script" path="res://6am/bed_camera.gd" id="6_cw718"]
+[ext_resource type="Script" path="res://6am/assets/bedroom/monitor.gd" id="10_xviqk"]
+[ext_resource type="PackedScene" uid="uid://b8djcm2p4whjj" path="res://6am/assets/bedroom/door.glb" id="11_ohkal"]
+[ext_resource type="PackedScene" uid="uid://d12k8e8yoa6m" path="res://6am/assets/dust2/dust2.glb" id="12_xvk6u"]
+[ext_resource type="PackedScene" uid="uid://c28i2cb0ex88k" path="res://6am/assets/bedroom/desk.glb" id="456_0bgdy"]
+[ext_resource type="PackedScene" uid="uid://nw7ycv5ih5o6" path="res://6am/assets/bedroom/monitor.glb" id="457_civ8t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e5vxo"]
+size = Vector3(2.94748, 1.32252, 3.55366)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_84v0w"]
+sky_top_color = Color(0.0196078, 0.0901961, 0.203922, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+sky_curve = 0.0256132
+ground_bottom_color = Color(0, 0, 0, 1)
+sun_angle_max = 0.0
+sun_curve = 0.235376
+
+[sub_resource type="Sky" id="Sky_x0nm0"]
+sky_material = SubResource("ProceduralSkyMaterial_84v0w")
+
+[sub_resource type="Environment" id="Environment_420sx"]
+background_mode = 2
+sky = SubResource("Sky_x0nm0")
+fog_enabled = true
+fog_light_color = Color(0.0745098, 0.141176, 0.180392, 1)
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_m1rcd")
+
+[node name="ceiling" parent="." instance=ExtResource("4_yy6al")]
+transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, -0.909703, -0.405435, -0.908697)
+
+[node name="player_main" parent="." instance=ExtResource("2_up34l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34111, 1.25988, 32.3058)
+
+[node name="room" parent="." instance=ExtResource("5_2l8ag")]
+transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, -0.909703, -0.405435, -0.908697)
+
+[node name="entity_bed" parent="." instance=ExtResource("5_83ym8")]
+transform = Transform3D(-0.766091, 0, -1.15677e-07, 0, 0.766091, 0, 1.15677e-07, 0, -0.766091, 0.904668, 0.139251, -2.41836)
+
+[node name="bed_camera" type="Camera3D" parent="entity_bed"]
+transform = Transform3D(1.30533, 0, 0, 0, 1.30533, 0, 0, 0, 1.30533, -2.38419e-07, 1.07342, 1.5848)
+script = ExtResource("6_cw718")
+
+[node name="Area3D" type="Area3D" parent="entity_bed"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11344, 0)
+script = ExtResource("6_2neyb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="entity_bed/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.170386, -0.803455, 0)
+shape = SubResource("BoxShape3D_e5vxo")
+
+[node name="bed_timer" type="Timer" parent="entity_bed"]
+one_shot = true
+
+[node name="desk" parent="." instance=ExtResource("456_0bgdy")]
+transform = Transform3D(-1.7266e-08, 0, 0.395, 0, 0.395, 0, -0.395, 0, -1.7266e-08, 0.219551, -0.142747, 1.45181)
+
+[node name="monitor" parent="." instance=ExtResource("457_civ8t")]
+transform = Transform3D(-0.871003, 0, -8.74228e-08, 0, 1, 0, 7.61455e-08, 0, -1, 0.222781, 0.863106, 1.65262)
+script = ExtResource("10_xviqk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_420sx")
+
+[node name="door" parent="." instance=ExtResource("11_ohkal")]
+transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, -0.909703, -0.405435, -0.908697)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.22632, 1.57137, -1.23928)
+light_color = Color(0.180392, 0.760784, 0.913725, 1)
+light_energy = 0.05
+
+[node name="dust2" parent="." instance=ExtResource("12_xvk6u")]
+transform = Transform3D(0.754, 0, 0, 0, 0.754, 0, 0, 0, 0.754, -6.46507, 0, 23.9973)
+
+[connection signal="body_entered" from="entity_bed/Area3D" to="entity_bed" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="entity_bed/Area3D" to="entity_bed" method="_on_area_3d_body_exited"]

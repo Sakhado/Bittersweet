@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dxknglsyebelh"]
+
+[ext_resource type="Texture2D" uid="uid://c3u7fp5skuf7p" path="res://6am/assets/textures/tex_grid.jpg" id="1_1i5jp"]
+
+[resource]
+albedo_texture = ExtResource("1_1i5jp")
+uv1_scale = Vector3(16.435, 16.435, 16.435)
+uv1_triplanar_sharpness = 0.0507658
+uv2_scale = Vector3(-0.55, -0.55, -0.55)

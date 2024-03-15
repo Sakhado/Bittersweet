@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://6gpjpn4g8ut"]
+
+[ext_resource type="PackedScene" uid="uid://dq4ql5t3x8dvw" path="res://object_types/holdable.tscn" id="1_j2bfw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_un8ec"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rsg8m"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="test_cube" type="Node3D"]
+
+[node name="cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707057, 0, 0, 0, 0.707057, 0, 0, 0, 0.707057, 0, 0, 0)
+mesh = SubResource("BoxMesh_un8ec")
+
+[node name="cube_collision" type="StaticBody3D" parent="cube"]
+
+[node name="cube_col" type="CollisionShape3D" parent="cube/cube_collision"]
+shape = SubResource("ConcavePolygonShape3D_rsg8m")
+
+[node name="is_holdable" parent="cube" instance=ExtResource("1_j2bfw")]
+transform = Transform3D(1.41431, 0, 0, 0, 1.41431, 0, 0, 0, 1.41431, 0, 0, 0)

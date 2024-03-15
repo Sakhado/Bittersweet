@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://clsqkgwdsd36y"]
+
+[ext_resource type="PackedScene" uid="uid://co4x28omy7k6q" path="res://6am/assets/bedroom/bed.glb" id="1_4eqb5"]
+[ext_resource type="Script" path="res://6am/assets/interactables/entity_bed.gd" id="2_qlxyd"]
+
+[node name="entity_bed" instance=ExtResource("1_4eqb5")]
+script = ExtResource("2_qlxyd")
+
+[node name="bed" parent="." index="0"]
+transform = Transform3D(0.665, 0, 0, 0, 0.665, 0, 0, 0, 0.665, 0, 0, 0)

@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dq4ql5t3x8dvw"]
+
+[node name="is_holdable" type="Node3D"]
